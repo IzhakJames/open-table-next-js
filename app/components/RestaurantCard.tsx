@@ -3,7 +3,7 @@ import React from "react";
 
 const RestaurantCard = () => {
   return (
-    <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer">
+    <div className="w-64 h-72 m-3 rounded overflow-hidden border cursor-pointer hover:shadow-lg">
       <Link href="/restaurant/milestones-grill">
         <img
           src="https://resizer.otstatic.com/v2/photos/wide-huge/2/31852905.jpg"
