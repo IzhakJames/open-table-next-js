@@ -1,7 +1,17 @@
+"use client";
+
+import { useEffect } from "react";
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
+import axios from "axios";
 
 export default function Home() {
+  // useEffect(() => {
+  //   axios
+  //     .get("api/upload")
+  //     .then((res) => console.log(res))
+  //     .catch((err) => alert(err.message));
+  // }, []);
   return (
     <main>
       <Header></Header>
