@@ -9,12 +9,20 @@ export const metadata: Metadata = {
 
 interface Props {
   children: ReactNode;
+  params: { slug: string };
 }
 
-const RestaurantLayout = ({ children }: Props) => {
+const RestaurantLayout = ({ children, params }: Props) => {
+  const renderTitle = (slug: string) => {
+    const stringArr = slug.split("-");
+    stringArr[stringArr.length - 1] =
+      "(" + stringArr[stringArr.length - 1] + ")";
+    const title = stringArr.join(" ");
+    return title;
+  };
   return (
     <main>
-      <Header></Header>
+      <Header title={renderTitle(params.slug)}></Header>
       <div className="flex m-auto w-2/3 justify-between items-start 0 -mt-11">
         {children}
       </div>

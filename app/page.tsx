@@ -38,7 +38,6 @@ export default async function Home() {
   //     .catch((err) => alert(err.message));
   // }, []);
   const restaurants = await fetchRestaurant();
-  console.log(restaurants);
 
   return (
     <main>
