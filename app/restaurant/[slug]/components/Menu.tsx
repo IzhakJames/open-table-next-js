@@ -1,6 +1,8 @@
 import React from "react";
+import MenuCard from "./MenuCard";
+import { Item } from "@prisma/client";
 
-const Menu = () => {
+const Menu = ({ items }: { items: Item[] }) => {
   return (
     <main className="bg-white mt-5">
       <div>
@@ -8,13 +10,21 @@ const Menu = () => {
           <h1 className="font-bold text-4xl">Menu</h1>
         </div>
         <div className="flex flex-wrap justify-between">
-          <div className=" border rounded p-3 w-[49%] mb-3">
-            <h3 className="font-bold text-lg">Surf and Turf</h3>
-            <p className="font-light mt-1 text-sm">
-              A well done steak with lobster and rice
-            </p>
-            <p className="mt-7">$80.00</p>
-          </div>
+          {items.length > 0 ? (
+            items.map((item) => (
+              <MenuCard
+                key={item.id}
+                name={item.name}
+                description={item.description}
+                price={item.price}></MenuCard>
+            ))
+          ) : (
+            <div className=" border rounded p-3 w-[49%] mb-3">
+              <p className="font-light mt-1 text-sm">
+                This restaurant has no menu.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </main>
