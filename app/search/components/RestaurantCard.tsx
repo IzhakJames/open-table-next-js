@@ -22,7 +22,11 @@ const RestaurantCard = ({
 }: Props) => {
   return (
     <div className="border-b flex pb-5">
-      <img src={main_image} alt="Restaurant Image" className="w-44 rounded" />
+      <img
+        src={main_image}
+        alt="Restaurant Image"
+        className="w-44 h-36 rounded"
+      />
       <div className="pl-5">
         <h2 className="text-3xl">{name}</h2>
         <div className="flex items-start">
