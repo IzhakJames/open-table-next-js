@@ -1,12 +1,7 @@
 import { Cuisine, Location, PRICE } from "@prisma/client";
 import Link from "next/link";
 import React from "react";
-
-interface searchParams {
-  city?: string;
-  cuisine?: string;
-  price?: PRICE;
-}
+import { searchParams } from "../page";
 
 interface Props {
   locations: Location[];
@@ -63,7 +58,7 @@ const SearchSideBar = ({ locations, cuisines, searchParams }: Props) => {
               },
             }}
             className="border w-full text-reg font-light rounded-l p-2 hover:bg-slate-400">
-            $
+            $$
           </Link>
           <Link
             href={{
@@ -74,7 +69,7 @@ const SearchSideBar = ({ locations, cuisines, searchParams }: Props) => {
               },
             }}
             className="border-r border-t border-b w-full text-reg font-light p-2 hover:bg-slate-400">
-            $$
+            $$$
           </Link>
           <Link
             href={{
@@ -85,10 +80,17 @@ const SearchSideBar = ({ locations, cuisines, searchParams }: Props) => {
               },
             }}
             className="border-r border-t border-b w-full text-reg font-light p-2 rounded-r hover:bg-slate-400">
-            $$$
+            $$$$
           </Link>
         </div>
       </div>
+      <Link
+        href={{
+          pathname: "search",
+        }}
+        className="border rounded-md w-full text-sm font-light p-2 bg-slate-300 hover:bg-slate-400">
+        Reset Search Conditions
+      </Link>
     </div>
   );
 };

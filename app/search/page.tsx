@@ -3,9 +3,41 @@ import SearchSideBar from "./components/SearchSideBar";
 import RestaurantCard from "./components/RestaurantCard";
 import { PRICE, PrismaClient } from "@prisma/client";
 
+export interface searchParams {
+  city?: string;
+  cuisine?: string;
+  price?: PRICE;
+}
+
 const prisma = new PrismaClient();
 
-const fetchRestaurantByLocation = (city: string) => {
+const fetchRestaurantByLocation = (searchParams: searchParams) => {
+  const where: any = {};
+  if (searchParams.city) {
+    const location = {
+      name: {
+        equals: searchParams.city.toLowerCase(),
+      },
+    };
+    where.location = location;
+  }
+
+  if (searchParams.cuisine) {
+    const cuisine = {
+      name: {
+        equals: searchParams.cuisine.toLowerCase(),
+      },
+    };
+    where.cuisine = cuisine;
+  }
+
+  if (searchParams.price) {
+    const price = {
+      equals: searchParams.price,
+    };
+    where.price = price;
+  }
+
   const select = {
     id: true,
     name: true,
@@ -15,18 +47,13 @@ const fetchRestaurantByLocation = (city: string) => {
     location: true,
     price: true,
   };
-  if (!city) {
+
+  if (!searchParams) {
     return prisma.restaurant.findMany({ select });
   }
 
   return prisma.restaurant.findMany({
-    where: {
-      location: {
-        name: {
-          equals: city.toLowerCase(),
-        },
-      },
-    },
+    where,
     select,
   });
 };
@@ -39,12 +66,8 @@ const fetchCuisine = () => {
   return prisma.cuisine.findMany();
 };
 
-const Search = async ({
-  searchParams,
-}: {
-  searchParams: { city: string; cuisine: string; price: PRICE };
-}) => {
-  const restaurants = await fetchRestaurantByLocation(searchParams.city);
+const Search = async ({ searchParams }: { searchParams: searchParams }) => {
+  const restaurants = await fetchRestaurantByLocation(searchParams);
   const locations = await fetchLocation();
   const cuisines = await fetchCuisine();
 
@@ -64,7 +87,7 @@ const Search = async ({
                 name={restaurant.name}
                 main_image={restaurant.main_image}
                 price={restaurant.price}
-                city={searchParams.city}
+                city={restaurant.location.name}
                 cuisine={restaurant.cuisine.name}
                 slug={restaurant.slug}
               />
