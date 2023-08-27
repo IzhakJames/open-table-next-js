@@ -8,6 +8,7 @@ import Reviews from "./components/Reviews";
 import ReservationCard from "./components/ReservationCard";
 import { PrismaClient, Review } from "@prisma/client";
 import { CalculateRating } from "@/app/utils/CalculateRating";
+import { notFound } from "next/navigation";
 
 interface RestaurantDetails {
   id: number;
@@ -45,11 +46,7 @@ interface Props {
 const RestaurantDetails = async ({ params }: Props) => {
   const restaurant = await fetchRestaurantBySlug(params.slug);
   if (!restaurant) {
-    return (
-      <div className="bg-white w-[70%] rounded p-3 shadow text-center">
-        This restaurant does not exits.
-      </div>
-    );
+    notFound();
   }
 
   return (
