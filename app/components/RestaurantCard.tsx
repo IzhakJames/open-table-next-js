@@ -22,7 +22,10 @@ const RestaurantCard = ({ restaurant }: Props) => {
           </h3>
           <div className="flex items-start">
             <div className="flex mb-2">*****</div>
-            <p className="ml-2">77 reviews</p>
+            <p className="ml-2">
+              {restaurant.reviews.length} review
+              {restaurant.reviews.length > 1 ? "s" : ""}
+            </p>
           </div>
           <div className="flex text-reg font-light capitalize">
             <p className=" mr-3">{restaurant.cuisine.name}</p>

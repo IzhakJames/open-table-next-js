@@ -46,6 +46,7 @@ const fetchRestaurantByLocation = (searchParams: searchParams) => {
     cuisine: true,
     location: true,
     price: true,
+    reviews: true,
   };
 
   if (!searchParams) {
@@ -90,6 +91,7 @@ const Search = async ({ searchParams }: { searchParams: searchParams }) => {
                 city={restaurant.location.name}
                 cuisine={restaurant.cuisine.name}
                 slug={restaurant.slug}
+                reviews={restaurant.reviews}
               />
             ))
           ) : (
