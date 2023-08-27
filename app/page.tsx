@@ -1,3 +1,7 @@
+// "use client";
+// import { useEffect } from "react";
+// import axios from "axios";
+
 import Header from "./components/Header";
 import RestaurantCard from "./components/RestaurantCard";
 import { PrismaClient, Cuisine, Location, PRICE } from "@prisma/client";
