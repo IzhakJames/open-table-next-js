@@ -2,6 +2,8 @@ import Link from "next/link";
 import React from "react";
 import { RestaurantCardDetails } from "../page";
 import Price from "./Price";
+import Stars from "./Stars";
+import { CalculateRating } from "../utils/CalculateRating";
 
 interface Props {
   restaurant: RestaurantCardDetails;
@@ -21,7 +23,7 @@ const RestaurantCard = ({ restaurant }: Props) => {
             {restaurant.name}
           </h3>
           <div className="flex items-start">
-            <div className="flex mb-2">*****</div>
+            <Stars ratings={CalculateRating(restaurant.reviews)}></Stars>
             <p className="ml-2">
               {restaurant.reviews.length} review
               {restaurant.reviews.length > 1 ? "s" : ""}

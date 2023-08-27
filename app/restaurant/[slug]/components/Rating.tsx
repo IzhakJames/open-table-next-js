@@ -1,3 +1,4 @@
+import Stars from "@/app/components/Stars";
 import React from "react";
 
 interface Props {
@@ -7,9 +8,9 @@ interface Props {
 
 const Rating = ({ averageRating, numOfReviews }: Props) => {
   return (
-    <div className="flex items-end">
-      <div className="ratings mt-2 flex items-center">
-        <p>*****</p>
+    <div className="flex items-baseline">
+      <div className="ratings mt-2 flex items-baseline">
+        <Stars ratings={averageRating}></Stars>
         <p className="text-reg ml-3">{averageRating}</p>
       </div>
       <div>

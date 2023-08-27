@@ -84,13 +84,14 @@ const SearchSideBar = ({ locations, cuisines, searchParams }: Props) => {
           </Link>
         </div>
       </div>
-      <Link
-        href={{
-          pathname: "search",
-        }}
-        className="border rounded-md w-full text-sm font-light p-2 bg-slate-300 hover:bg-slate-400">
-        Reset Search Conditions
-      </Link>
+      <div className="border rounded-md w-full text-sm font-light p-2 text-center bg-slate-300 hover:bg-slate-400">
+        <Link
+          href={{
+            pathname: "search",
+          }}>
+          Reset Search Conditions
+        </Link>
+      </div>
     </div>
   );
 };
