@@ -1,31 +1,34 @@
 import Header from "./components/Header";
 import SearchSideBar from "./components/SearchSideBar";
 import RestaurantCard from "./components/RestaurantCard";
-import { PrismaClient } from "@prisma/client";
+import { PRICE, PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-const fetchRestaurantByLocation = async (city: string) => {
-  const restaurant = await prisma.restaurant.findMany({
+const fetchRestaurantByLocation = (city: string) => {
+  const select = {
+    id: true,
+    name: true,
+    main_image: true,
+    slug: true,
+    cuisine: true,
+    location: true,
+    price: true,
+  };
+  if (!city) {
+    return prisma.restaurant.findMany({ select });
+  }
+
+  return prisma.restaurant.findMany({
     where: {
       location: {
         name: {
-          equals: city,
+          equals: city.toLowerCase(),
         },
       },
     },
-    select: {
-      id: true,
-      name: true,
-      main_image: true,
-      slug: true,
-      cuisine: true,
-      location: true,
-      price: true,
-    },
+    select,
   });
-
-  return restaurant;
 };
 
 const fetchLocation = () => {
@@ -36,9 +39,12 @@ const fetchCuisine = () => {
   return prisma.cuisine.findMany();
 };
 
-const Search = async ({ searchParams }: { searchParams: { city: string } }) => {
-  const city = searchParams.city.toLowerCase();
-  const restaurants = await fetchRestaurantByLocation(city);
+const Search = async ({
+  searchParams,
+}: {
+  searchParams: { city: string; cuisine: string; price: PRICE };
+}) => {
+  const restaurants = await fetchRestaurantByLocation(searchParams.city);
   const locations = await fetchLocation();
   const cuisines = await fetchCuisine();
 
@@ -47,6 +53,7 @@ const Search = async ({ searchParams }: { searchParams: { city: string } }) => {
       <Header></Header>
       <div className="flex py-4 m-auto w-2/3 justify-between items-start">
         <SearchSideBar
+          searchParams={searchParams}
           locations={locations}
           cuisines={cuisines}></SearchSideBar>
         <div className="ml-3 w-5/6">
@@ -57,7 +64,7 @@ const Search = async ({ searchParams }: { searchParams: { city: string } }) => {
                 name={restaurant.name}
                 main_image={restaurant.main_image}
                 price={restaurant.price}
-                city={city}
+                city={searchParams.city}
                 cuisine={restaurant.cuisine.name}
                 slug={restaurant.slug}
               />
