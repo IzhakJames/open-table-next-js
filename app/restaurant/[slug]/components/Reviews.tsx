@@ -18,6 +18,7 @@ const Reviews = ({ reviews }: Props) => {
           <div>
             {reviews.map((review) => (
               <ReviewCard
+                key={review.id}
                 first_name={review.first_name}
                 last_name={review.last_name}
                 review={review.text}></ReviewCard>
