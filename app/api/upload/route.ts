@@ -1039,7 +1039,7 @@ export async function GET() {
       last_name: "Harb",
       email: "laith@hotmail.com",
       city: "ottawa",
-      //password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+      password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
   });
@@ -1050,7 +1050,7 @@ export async function GET() {
       last_name: "Allen",
       email: "josh@hotmail.com",
       city: "toronto",
-      //password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+      password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
   });
@@ -1061,7 +1061,7 @@ export async function GET() {
       last_name: "James",
       email: "lebron@hotmail.com",
       city: "niagara",
-      //password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+      password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
   });
@@ -1072,7 +1072,7 @@ export async function GET() {
       last_name: "Marksom",
       email: "cassidy@hotmail.com",
       city: "toronto",
-      //password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
+      password: "$2b$10$I8xkU2nQ8EAHuVOdbMy9YO/.rSU3584Y.H4LrpIujGNDtmny9FnLu",
       phone: "1112223333",
     },
   });
