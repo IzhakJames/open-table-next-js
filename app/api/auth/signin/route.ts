@@ -15,13 +15,13 @@ export async function POST(req: NextRequest) {
   const validationSchema = [
     {
       valid: validator.isEmail(body.email),
-      errorMessage: "Email is invalid.",
+      errorMessage: "Email/Password is invalid.",
     },
     {
       valid: validator.isLength(body.password, {
         min: 1,
       }),
-      errorMessage: "Password is invalid.",
+      errorMessage: "Email/Password is invalid.",
     },
   ];
 
