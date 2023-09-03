@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import validator from "validator";
 import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcrypt";
+import * as jose from "jose";
 
 const prisma = new PrismaClient();
 
@@ -64,7 +66,6 @@ export async function POST(req: NextRequest) {
       },
     },
   });
-  console.log(userWithEmail);
 
   if (userWithEmail.length > 0) {
     return NextResponse.json(
@@ -73,5 +74,27 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  return NextResponse.json(body, { status: 200 });
+  const hashedPassword = await bcrypt.hash(body.password, 10);
+
+  const user = await prisma.user.create({
+    data: {
+      first_name: body.firstName,
+      last_name: body.lastName,
+      email: body.email,
+      city: body.city,
+      password: hashedPassword,
+      phone: body.phone,
+    },
+  });
+
+  const alg = "HS256";
+  const secret = new TextEncoder().encode(process.env.JWT_SECRET);
+  const token = await new jose.SignJWT({ email: user.email })
+    .setProtectedHeader({ alg })
+    .setExpirationTime("24h")
+    .sign(secret);
+
+  console.log(token);
+
+  return NextResponse.json(token, { status: 200 });
 }
