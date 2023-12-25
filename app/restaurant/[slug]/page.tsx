@@ -13,7 +13,7 @@ import { notFound } from "next/navigation";
 interface RestaurantDetails {
   id: number;
   name: string;
-  images: string[];
+  images: string;
   description: string;
   slug: string;
   reviews: Review[];
