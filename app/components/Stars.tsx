@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Image, { StaticImageData } from "next/image";
 import fullStar from "../../public/icons/full-star.png";
@@ -24,8 +25,14 @@ const Stars = ({ ratings }: Props) => {
   }
   return (
     <>
-      {starsArr.map((star) => (
-        <Image width={20} src={star} alt="full star" className="flex mb-2" />
+      {starsArr.map((star, index) => (
+        <Image
+          key={index}
+          width={20}
+          src={star}
+          alt="full star"
+          className="flex mb-2"
+        />
       ))}
     </>
   );

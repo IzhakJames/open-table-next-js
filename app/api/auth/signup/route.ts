@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import validator from "validator";
-import { PrismaClient } from "@prisma/client";
+import prisma from "@/prisma/client";
 import bcrypt from "bcrypt";
 import * as jose from "jose";
-
-const prisma = new PrismaClient();
 
 export async function GET() {
   return new Response("hello", { status: 200 });

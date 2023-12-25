@@ -6,9 +6,10 @@ import Description from "./components/Description";
 import RestaurantImage from "./components/RestaurantImage";
 import Reviews from "./components/Reviews";
 import ReservationCard from "./components/ReservationCard";
-import { PrismaClient, Review } from "@prisma/client";
+import prisma from "@/prisma/client";
 import { CalculateRating } from "@/app/utils/CalculateRating";
 import { notFound } from "next/navigation";
+import { Review } from "@prisma/client";
 
 interface RestaurantDetails {
   id: number;
@@ -18,8 +19,6 @@ interface RestaurantDetails {
   slug: string;
   reviews: Review[];
 }
-
-const prisma = new PrismaClient();
 
 const fetchRestaurantBySlug = async (slug: string) => {
   const restaurant = prisma.restaurant.findUnique({

@@ -1,15 +1,14 @@
 import Header from "./components/Header";
 import SearchSideBar from "./components/SearchSideBar";
 import RestaurantCard from "./components/RestaurantCard";
-import { PRICE, PrismaClient } from "@prisma/client";
+import { PRICE } from "@prisma/client";
+import prisma from "@/prisma/client";
 
 export interface searchParams {
   city?: string;
   cuisine?: string;
   price?: PRICE;
 }
-
-const prisma = new PrismaClient();
 
 const fetchRestaurantByLocation = (searchParams: searchParams) => {
   const where: any = {};
